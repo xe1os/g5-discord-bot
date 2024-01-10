@@ -74,7 +74,7 @@ class MatchCog(commands.Cog, name="Match"):
         team2_model: TeamModel,
         capacity: int,
         interaction: Interaction,
-        series: Literal["bo1", "bo2", "bo3"],
+        series: Literal["bo1", "bo2", "bo3","bo5"],
         game_mode: Literal["competitive", "wingman"],
         author: Member,
         season_id: int=None

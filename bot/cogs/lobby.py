@@ -52,7 +52,8 @@ AUTO_READY_CHOICES = [
 SERIES_CHOICES = [
     app_commands.Choice(name="Bo1", value="bo1"),
     app_commands.Choice(name="Bo2", value="bo2"),
-    app_commands.Choice(name="Bo3", value="bo3")
+    app_commands.Choice(name="Bo3", value="bo3"),
+    app_commands.Choice(name="Bo5", value="bo5")
 ]
 
 GAME_MODE_CHOICES = [

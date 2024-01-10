@@ -20,7 +20,7 @@ steps = [
         'DROP TYPE map_method;'
     ),
     step(
-        'CREATE TYPE series_type AS ENUM(\'bo1\', \'bo2\', \'bo3\');',
+        'CREATE TYPE series_type AS ENUM(\'bo1\', \'bo2\', \'bo3\',\'bo5\');',
         'DROP TYPE series_type;'
     ),
     step(

@@ -23,7 +23,7 @@ class VetoView(View):
     def __init__(self,
         message: Message,
         mpool: List[str],
-        series: Literal["bo1", "bo2", "bo3"],
+        series: Literal["bo1", "bo2", "bo3","bo5"],
         captain1: Member,
         captain2: Member,
         game_mode: Literal["competitive", "wingman"],
@@ -46,10 +46,15 @@ class VetoView(View):
     def _active_picker(self):
         picking_player_number = int(self.ban_order[self.ban_number])
         return self.captains[picking_player_number - 1]
-
+    
     @property
     def _current_method(self):
-        if self.series == 'bo3':
+        if self.series == 'bo5':
+            if self.ban_number in [0, 1, 2, 3, 4, 5]:
+                next_method = "Ban" if self.ban_number % 2 == 0 else "Pick"
+            else:
+                next_method = "None"
+        elif self.series == 'bo3':
             if self.ban_number in [0, 1, 4, 5]:
                 next_method = "Ban"
             elif self.ban_number in [2, 3]:
@@ -72,7 +77,8 @@ class VetoView(View):
 
     @property
     def is_veto_done(self):
-        return (self.series == 'bo3' and len(self.maps_pick) == 3) or \
+        return (self.series == 'bo5' and len(self.maps_pick) == 5) or \
+            (self.series == 'bo3' and len(self.maps_pick) == 3) or \
             (self.series == 'bo2' and len(self.maps_pick) == 2) or \
             (self.series == 'bo1' and len(self.maps_pick) == 1)
     
@@ -102,8 +108,15 @@ class VetoView(View):
             return
     
         self.maps_left.remove(selected_map)
-
-        if self.series == 'bo3':
+        
+        if self.series == 'bo5':
+            if self.ban_number in [0, 1, 2, 3, 4, 5]:
+                self.maps_ban.append(selected_map) if self.ban_number % 2 == 0 else self.maps_pick.append(selected_map)
+                action = 'banned' if self.ban_number % 2 == 0 else 'picked'
+            if self.ban_number == 5:
+                self.maps_pick.append(random.choice(self.maps_left))
+        
+        elif self.series == 'bo3':
             if self.ban_number in [0, 1, 4, 5]:
                 self.maps_ban.append(selected_map)
                 action = 'banned'
