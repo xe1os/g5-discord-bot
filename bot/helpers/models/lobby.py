@@ -19,7 +19,7 @@ class LobbyModel:
         team_method: Literal["autobalance", "captains", "random"],
         captain_method: Literal["random", "volunteer", "rank"],
         map_method: Literal["random", "veto"],
-        series: Literal["bo1", "bo2", "bo3","bo5"],
+        series: Literal["bo1", "bo2", "bo3", "bo5"],
         game_mode: Literal["competitive", "wingman"],
         auto_ready: bool,
         season_id: Optional[int],

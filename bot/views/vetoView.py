@@ -23,7 +23,7 @@ class VetoView(View):
     def __init__(self,
         message: Message,
         mpool: List[str],
-        series: Literal["bo1", "bo2", "bo3","bo5"],
+        series: Literal["bo1", "bo2", "bo3", "bo5"],
         captain1: Member,
         captain2: Member,
         game_mode: Literal["competitive", "wingman"],
